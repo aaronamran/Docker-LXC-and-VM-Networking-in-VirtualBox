@@ -12,7 +12,7 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
 ### Installing Docker
 - The first thing to do is to update the package index
   ```
-  sudo apt update
+  sudo apt update && sudo apt upgrade -y
   ```
 - Then install necessary packages
   ```
