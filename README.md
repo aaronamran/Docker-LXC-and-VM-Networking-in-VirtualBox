@@ -35,17 +35,17 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
   ```
 
 ### Running Containerised Services
-- Pull a Sample Image and run a container
+- Pull a sample image and run a container
   ```
   docker pull hello-world
   docker run hello-world
   ```
-- Example - Run a Web Server Container
+- For testing service accessibility, Nginx was deployed as a Docker container rather than installed natively on the VM. Here is the example to run a web server container
   ```
   docker pull nginx
   docker run -d -p 8080:80 --name webserver nginx
   ```
-- To verify the operation, Open a web browser on your host system and navigate to `http://<VM_IP>:8080` if using bridged networking or use port forwarding for NAT
+- To verify the operation, open a web browser on your host system and navigate to `http://<VM_IP>:8080` if using bridged networking or use port forwarding for NAT
 
 ## Exploring LXC/LXD for Lightweight Virtualisation
 ### Install LXD
