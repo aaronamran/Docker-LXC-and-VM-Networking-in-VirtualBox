@@ -31,6 +31,28 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
   sudo apt update
   sudo apt install docker-ce docker-ce-cli containerd.io -y
   ```
+  ![image](https://github.com/user-attachments/assets/7d9084ae-e4e5-4acc-9c32-385e500b6365)
+  If error messages appear, run the command below to check the Ubuntu codename
+  ```
+  lsb_release -cs
+  ```
+  At this point in time, we are currently on Ubuntu 24.04 "Noble Numbat", which was just released, and Docker hasn’t added official support for it yet in their APT repository. Hence the displayed error messages
+
+- The solution is to use jammy (Ubuntu 22.04) repo instead — it's stable and fully supported by Docker. Remove the invalid (noble) Docker repo
+  ```
+  sudo rm /etc/apt/sources.list.d/docker.list
+  ```
+  Then re-add Docker's jammy repo manually
+  ```
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] \
+  https://download.docker.com/linux/ubuntu jammy stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  ```
+  Update the package index again and install Docker
+  ```
+  sudo apt install docker-ce docker-ce-cli containerd.io -y
+  ```
+
 - An optional step is to add your user to the Docker group to run commands without sudo. Log out and back in or reboot to apply the changes
   ```
   sudo usermod -aG docker $USER
