@@ -107,9 +107,8 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
   ```
 
 ## VM Networking in VirtualBox
-To simulate real-world infrastructure and container networking (like Proxmox setups), understanding how your Lubuntu VM is networked inside VirtualBox is key. 
+To simulate real-world infrastructure and container networking (like Proxmox setups), understanding how your Lubuntu VM is networked inside VirtualBox is key
 <br />
-Choosing the right network adapter
 1. Bridged Adapter
 - Acts as if the VM is just another machine on your LAN
 - Gets its own IP address from your network's DHCP server
