@@ -187,6 +187,20 @@ For this project, the Bridged Adapter mode is used. It allows the Lubuntu VM to 
   ```
   lxc exec mycontainer -- ping -c 4 8.8.8.8
   ```
+  ![image](https://github.com/user-attachments/assets/80526a43-ea4e-4770-8ede-4d9827cbe3fe)
+  <br />
+  If the container has no internet access and displays 100% packet loss, it usually points to an issue with the LXD network bridge (lxdbr0) not being configured properly or not NAT'ing traffic to the outside world
+  <br />
+  To check for the bridge settings, run
+  ```
+  lxc network list
+  ```
+  Look for lxdbr0 — its "MANAGED" column should say "YES", and "TYPE" should be "bridge" <br />
+  ![image](https://github.com/user-attachments/assets/215ccddc-1f60-431c-a097-9a86438d0afb)
+  
+  
+
+
   An alternative is to use
   ```
   lxc exec mycontainer -- curl http://google.com
