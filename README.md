@@ -1,6 +1,6 @@
 # Docker, LXC and VM Networking in VirtualBox
 
-This write-up documents a practical project that uses VirtualBox alongside Linux container technologies (Docker and LXC/LXD) to simulate and explore the core concepts provided by platforms like Proxmox. A lightweight Lubuntu VM is used for this setup. Note that the initial setup of the Linux VM in VirtualBox is not included, as it was completed beforehand.
+This write-up documents a practical project that uses VirtualBox alongside Linux container technologies (Docker and LXC/LXD) to simulate and explore the core concepts provided by platforms like Proxmox. A lightweight Lubuntu VM is used for this setup. This project uses LXD, a system container manager built on top of LXC, to demonstrate lightweight virtualization. Note that the initial setup of the Linux VM in VirtualBox is not included, as it was completed beforehand.
 
 1. [Setting Up Docker for Containerised Services](https://github.com/aaronamran/Docker-LXC-and-VM-Networking-in-VirtualBox/blob/main/README.md#setting-up-docker-for-containerised-services)
 2. [Exploring LXC/LXD for Lightweight Virtualisation](https://github.com/aaronamran/Docker-LXC-and-VM-Networking-in-VirtualBox/blob/main/README.md#exploring-lxclxd-for-lightweight-virtualisation)
@@ -97,6 +97,8 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
   ```
   which lxd
   ```
+  ![image](https://github.com/user-attachments/assets/8ed5f8c3-5794-49dc-8b4e-f173efbac6f4)
+  <br />
   If it says `/snap/bin/lxd`, then all is good
   
 - Initialise LXD
@@ -119,11 +121,13 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
   ```
   lxc list
   ```
+  ![image](https://github.com/user-attachments/assets/f34b80d7-1fb9-4569-b3b1-093f062312b7)
 
 - To access container shell, use
   ```
   lxc exec mycontainer -- /bin/bash
   ```
+  ![image](https://github.com/user-attachments/assets/ac147f1e-6979-4f44-93e0-e796b52a2800)
 
 - To stop and delete containers when not needed, use
   ```
@@ -141,6 +145,8 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
   ```
   lxc restore mycontainer snap1
   ```
+  ![image](https://github.com/user-attachments/assets/db41f319-e94b-414f-aba8-b9b5ea30fd6c)
+
 
 ## VM Networking in VirtualBox
 To simulate real-world infrastructure and container networking (like Proxmox setups), understanding how your Lubuntu VM is networked inside VirtualBox is key
@@ -177,13 +183,26 @@ For this project, the Bridged Adapter mode is used. It allows the Lubuntu VM to 
   ```
 
 ### Verifying Network Connectivity
-- Once Docker or LXC containers are running, test their accessibility from your host system
+- Once Docker or LXC containers are running, test the container's outbound network access
   ```
-  curl http://<VM_IP>:8080
+  lxc exec mycontainer -- ping -c 4 8.8.8.8
   ```
-  or from within VM or a container
+  An alternative is to use
   ```
-  ping 8.8.8.8
+  lxc exec mycontainer -- curl http://google.com
   ```
-
+- Test if a service in the container is accessible from the host. We will need to run a simple HTTP server in the container
+  ```
+  lxc exec mycontainer -- bash
+  ```
+  Then install Python if not available and start the HTTP server
+  ```
+  apt update && apt install -y python3
+  cd /tmp
+  python3 -m http.server 8080
+  ```
+  This will serve files from /tmp on port 8080. From the host system, run
+  ```
+  curl http://<Container_IP_Address>:8080
+  ```
 
