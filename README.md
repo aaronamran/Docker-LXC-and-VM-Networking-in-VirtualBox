@@ -2,6 +2,9 @@
 
 This write-up documents a practical project that uses VirtualBox alongside Linux container technologies (Docker and LXC/LXD) to simulate and explore the core concepts provided by platforms like Proxmox. A lightweight Lubuntu VM is used for this setup. This project uses LXD, a system container manager built on top of LXC, to demonstrate lightweight virtualization. Note that the initial setup of the Linux VM in VirtualBox is not included, as it was completed beforehand.
 
+![docker_lxc_vm_networking_diagram](https://github.com/user-attachments/assets/cc0aabdb-06f1-482b-83b1-67ac211862b9)
+
+
 1. [Setting Up Docker for Containerised Services](https://github.com/aaronamran/Docker-LXC-and-VM-Networking-in-VirtualBox/blob/main/README.md#setting-up-docker-for-containerised-services)
 2. [Exploring LXC/LXD for Lightweight Virtualisation](https://github.com/aaronamran/Docker-LXC-and-VM-Networking-in-VirtualBox/blob/main/README.md#exploring-lxclxd-for-lightweight-virtualisation)
 3. [VM Networking in VirtualBox](https://github.com/aaronamran/Docker-LXC-and-VM-Networking-in-VirtualBox/blob/main/README.md#vm-networking-in-virtualbox)
