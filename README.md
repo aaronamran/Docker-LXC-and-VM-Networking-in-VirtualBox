@@ -32,6 +32,7 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
   sudo apt install docker-ce docker-ce-cli containerd.io -y
   ```
   ![image](https://github.com/user-attachments/assets/7d9084ae-e4e5-4acc-9c32-385e500b6365)
+  <br />
   If error messages appear, run the command below to check the Ubuntu codename
   ```
   lsb_release -cs
