@@ -4,7 +4,7 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
 
 1. [Setting Up Docker for Containerised Services]()
 2. [Exploring LXC/LXD for Lightweight Virtualisation]()
-3. [Container Snapshots for LXD]()
+3. [VM Networking in VirtualBox]()
 
 
 ## [Setting Up Docker for Containerised Services]
@@ -95,7 +95,7 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
   lxc delete mycontainer
   ```
 
-## Container Snapshots for LXD
+### Container Snapshots for LXD
 - Create container snapshots with
   ```
   lxc snapshot mycontainer snap1
@@ -106,7 +106,49 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
   lxc restore mycontainer snap1
   ```
 
+## VM Networking in VirtualBox
+To simulate real-world infrastructure and container networking (like Proxmox setups), understanding how your Lubuntu VM is networked inside VirtualBox is key. 
+<br />
+Choosing the right network adapter
+1. Bridged Adapter
+- Acts as if the VM is just another machine on your LAN
+- Gets its own IP address from your network's DHCP server
+- Accessible from other devices on the network
+- Recommended for container scenarios where host and VM need to communicate seamlessly
 
+2. NAT (Network Address Translation)
+- VM shares the host’s IP and uses VirtualBox as a gateway
+- Good for quick setups where internet access is needed but external access to the VM isn't
+- Requires port forwarding to access container services from the host
 
+3. Host-only Adapter
+- Creates a virtual network between the host and VM only
+- VM has no internet unless combined with another adapter
+- Great for isolated labs and multi-VM setups where external access isn’t needed
+
+For this project, the Bridged Adapter mode is used. It allows the Lubuntu VM to get its own IP on the network, making it easy to:
+- Access containerized services (like Nginx) from the host without configuring port forwarding
+- Simulate a more realistic server environment
+- Test inbound connectivity as if the VM were a standalone physical machine
+
+### Checking the VM's IP Address
+- Run the following in Lubuntu VM
+  ```
+  ip a
+  ```
+- A more concise version is
+  ```
+  ip -4 addr show | grep inet
+  ```
+
+### Verifying Network Connectivity
+- Once Docker or LXC containers are running, test their accessibility from your host system
+  ```
+  curl http://<VM_IP>:8080
+  ```
+  or from within VM or a container
+  ```
+  ping 8.8.8.8
+  ```
 
 
