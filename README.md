@@ -7,7 +7,7 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
 3. [VM Networking in VirtualBox]()
 
 
-## [Setting Up Docker for Containerised Services]
+## Setting Up Docker for Containerised Services
 
 ### Installing Docker
 - The first thing to do is to update the package index
