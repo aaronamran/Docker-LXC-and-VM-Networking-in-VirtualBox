@@ -18,6 +18,8 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
   ```
   sudo apt install apt-transport-https ca-certificates curl gnupg lsb-release -y
   ```
+  ![image](https://github.com/user-attachments/assets/faf722bc-8755-4581-8d58-c94ca4d5016f)
+
 - Add Docker's official GPG key and repository
   ```
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
