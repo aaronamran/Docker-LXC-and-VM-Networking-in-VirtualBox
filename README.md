@@ -228,7 +228,7 @@ For this project, the Bridged Adapter mode is used. It allows the Lubuntu VM to 
   ![image](https://github.com/user-attachments/assets/f78d7b50-43c6-41c2-a04c-7eaad6090719)
 
 
-  This will serve files from /tmp on port 8080. From the host system, run
+  This will serve files from `/tmp` on port 8080. From the host system, run
   ```
   curl http://<Container_IP_Address>
   ```
