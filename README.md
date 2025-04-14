@@ -53,6 +53,9 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
   ```
   sudo apt install docker-ce docker-ce-cli containerd.io -y
   ```
+  When it is successful, it will install normally as shown below <br />
+  ![image](https://github.com/user-attachments/assets/dbb021f4-4bbd-4715-bf28-5c548de22b96)
+
 
 - An optional step is to add your user to the Docker group to run commands without sudo. Log out and back in or reboot to apply the changes
   ```
