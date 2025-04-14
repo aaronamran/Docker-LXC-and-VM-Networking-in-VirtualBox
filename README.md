@@ -106,7 +106,7 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
   
 - Initialise LXD
   ```
-  sudo lxd init
+  sudo lxd init --auto
   ```
 - An optional step is to run LXC commands without sudo
   ```
