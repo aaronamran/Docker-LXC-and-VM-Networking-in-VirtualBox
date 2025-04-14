@@ -29,7 +29,7 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
   sudo apt update
   sudo apt install docker-ce docker-ce-cli containerd.io -y
   ```
-- An optional step is to add your user to the Docker group to run commands without sudo
+- An optional step is to add your user to the Docker group to run commands without sudo. Log out and back in or reboot to apply the changes
   ```
   sudo usermod -aG docker $USER
   ```
@@ -53,10 +53,25 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
   ```
   sudo apt install lxd -y
   ```
+  If the command above gives a warning about Snap, then use
+  ```
+  sudo snap install lxd
+  ```
+  Check if LXD is installed as a snap with
+  ```
+  which lxd
+  ```
+  If it says `/snap/bin/lxd`, then all is good
+  
 - Initialise LXD
   ```
   sudo lxd init
   ```
+- An optional step is to run LXC commands without sudo
+  ```
+  sudo usermod -aG lxd $USER
+  ```
+  Then log out and back in or reboot to apply the group change
 
 ### Launching and Managing Containers
 - To launch a container, use
