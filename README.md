@@ -190,6 +190,9 @@ For this project, the Bridged Adapter mode is used. It allows the Lubuntu VM to 
   ```
   lxc exec mycontainer -- ping -c 4 8.8.8.8
   ```
+  ![image](https://github.com/user-attachments/assets/9cc7d9c7-f8c9-45ff-9f6e-69458c219369)
+  <br />
+
   ![image](https://github.com/user-attachments/assets/80526a43-ea4e-4770-8ede-4d9827cbe3fe)
   <br />
   If the container has no internet access and displays 100% packet loss, it usually points to an issue with the LXD network bridge (lxdbr0) not being configured properly or not NAT'ing traffic to the outside world
@@ -206,8 +209,10 @@ For this project, the Bridged Adapter mode is used. It allows the Lubuntu VM to 
 
   An alternative is to use
   ```
-  lxc exec mycontainer -- curl http://google.com
+  lxc exec mycontainer -- curl https://www.google.com
   ```
+  ![image](https://github.com/user-attachments/assets/f72e5bb7-603e-4329-af9e-89b9780d7fdb)
+
 - Test if a service in the container is accessible from the host. We will need to run a simple HTTP server in the container
   ```
   lxc exec mycontainer -- bash
@@ -218,8 +223,19 @@ For this project, the Bridged Adapter mode is used. It allows the Lubuntu VM to 
   cd /tmp
   python3 -m http.server 8080
   ```
+  ![image](https://github.com/user-attachments/assets/0db9c52f-de81-4147-90c9-7a2d76dad47f)
+  <br />
+  ![image](https://github.com/user-attachments/assets/f78d7b50-43c6-41c2-a04c-7eaad6090719)
+
+
   This will serve files from /tmp on port 8080. From the host system, run
   ```
-  curl http://<Container_IP_Address>:8080
+  curl http://<Container_IP_Address>
   ```
+  ![image](https://github.com/user-attachments/assets/84663be3-df3c-4899-af3b-80ac6d4f7903)
+  <br />
+  Alternatively, the IP address can also be viewed in a web browser like Firefox <br />
+  ![image](https://github.com/user-attachments/assets/e87fb788-5f67-4805-b810-ada46cae8db0)
+
+
 
