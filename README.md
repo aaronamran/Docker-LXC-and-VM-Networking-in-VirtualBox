@@ -68,12 +68,18 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
   docker pull hello-world
   docker run hello-world
   ```
+  ![image](https://github.com/user-attachments/assets/0b5658b4-9477-4360-9cd5-f94f3aea042e)
+
 - For testing service accessibility, Nginx was deployed as a Docker container rather than installed natively on the VM. Here is the example to run a web server container
   ```
   docker pull nginx
   docker run -d -p 8080:80 --name webserver nginx
   ```
-- To verify the operation, open a web browser on your host system and navigate to `http://<VM_IP>:8080` if using bridged networking or use port forwarding for NAT
+  ![image](https://github.com/user-attachments/assets/ee6ad309-0946-4eca-ba01-b1be112252b0)
+
+- To verify the operation, open a web browser on your host system and navigate to `http://<VM_IP>:8080` if using bridged networking or use port forwarding for NAT <br />
+  ![image](https://github.com/user-attachments/assets/7bfe27e5-6d1c-46f2-b1c5-fc4850c484e0)
+
 
 ## Exploring LXC/LXD for Lightweight Virtualisation
 ### Install LXD
@@ -81,6 +87,8 @@ This write-up documents a practical project that uses VirtualBox alongside Linux
   ```
   sudo apt install lxd -y
   ```
+  ![image](https://github.com/user-attachments/assets/9e467684-1fb7-4b78-b6bf-c53c974d12a6) 
+  <br />
   If the command above gives a warning about Snap, then use
   ```
   sudo snap install lxd
